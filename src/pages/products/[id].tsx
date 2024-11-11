@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { products } from "../../data/products";
+import Link from "next/link";
 
 export default function ProductDetails() {
   const router = useRouter();
@@ -9,17 +10,24 @@ export default function ProductDetails() {
   if (!product) return <p>Product not found!</p>;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-64 object-cover rounded-md mb-4"
-      />
-      <p className="text-xl mb-2">${product.price}</p>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-        Add to Cart
-      </button>
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <img className="w-full" src={product.image} alt={product.name} />
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{product.name}</div>
+        <p className="text-gray-700 text-base">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
+          nihil.
+        </p>
+      </div>
+      <div className="px-6 pt-4 pb-2">
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          {product.price}
+        </span>
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          <Link href={`/products/${id}`}>Buy</Link>
+        </span>
+      </div>
     </div>
   );
 }
